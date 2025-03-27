@@ -93,11 +93,11 @@ namespace _Main.Scripts.Enemies
 
             var accelerationVector = m_dir * (data.AccelerationRate * p_accMult);
 
-            var velocity = m_rb.velocity;
+            var velocity = m_rb.linearVelocity;
             velocity += accelerationVector * Time.deltaTime;
 
-            m_rb.velocity = Vector2.ClampMagnitude(velocity, data.TerimnalVelocity);
-            m_view.SetWalkSpeed((m_rb.velocity).magnitude);
+            m_rb.linearVelocity = Vector2.ClampMagnitude(velocity, data.TerimnalVelocity);
+            m_view.SetWalkSpeed((m_rb.linearVelocity).magnitude);
         }
 
 
@@ -177,7 +177,7 @@ namespace _Main.Scripts.Enemies
 
         public void SetRbSpeed(Vector2 p_speed)
         {
-            m_rb.velocity = p_speed;
+            m_rb.linearVelocity = p_speed;
         }
 
 #if UNITY_EDITOR

@@ -46,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   unWalkableMask:
     serializedVersion: 2
-    m_Bits: 32768
+    m_Bits: 294912
   gridworldSize: {x: 32, y: 16}
   nodeRadius: 0.5
   ySpacing: 1

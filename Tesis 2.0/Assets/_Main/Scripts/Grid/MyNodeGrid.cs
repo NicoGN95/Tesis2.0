@@ -28,14 +28,13 @@ namespace _Main.Scripts.Grid
         [ContextMenu("GenerateGrid")]
         private void Initialize()
         {
-            
             m_nodeDiameter = nodeRadius*2;
             m_gridSizeX = Mathf.RoundToInt(gridworldSize.x/m_nodeDiameter);
             m_gridSizeY = Mathf.RoundToInt(gridworldSize.y/m_nodeDiameter);
             CreateGrid();
         }
-        
-        void CreateGrid()
+
+        private void CreateGrid()
         {
             m_grid = new MyNode[m_gridSizeX, m_gridSizeY];
             Vector3 l_worldBottomLeft = transform.position - Vector3.right * gridworldSize.x / 2 -
@@ -48,9 +47,7 @@ namespace _Main.Scripts.Grid
                 {
                     Vector3 l_worldPoint = l_worldBottomLeft + Vector3.right * (l_x * m_nodeDiameter + nodeRadius) + Vector3.up * ySpacing * ((l_y) * m_nodeDiameter + nodeRadius);
                     bool l_walkable = !Physics2D.OverlapBox(l_worldPoint, l_halfExtents, 0, unWalkableMask);
-                    var l_node = new MyNode();
-                    l_node.Initialize(l_walkable, l_worldPoint, m_nodeDiameter/2 , new Vector3(l_x, l_y));
-
+                    var l_node = new MyNode(l_walkable, l_worldPoint, m_nodeDiameter/2 , new Vector3(l_x, l_y));
                         
                     m_grid[l_x, l_y] = l_node;
                 }

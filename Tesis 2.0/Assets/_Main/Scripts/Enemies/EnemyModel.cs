@@ -67,12 +67,8 @@ namespace _Main.Scripts.Enemies
 
         public void SetIsAttacking(bool b) => m_isAttacking = b;
 
-        private Vector3 target;
-
         public void MoveTowards(Vector3 p_targetPoint)
         {
-            target = p_targetPoint;
-            p_targetPoint.Xyo();
             m_dir = (p_targetPoint - transform.position).normalized;
             transform.position += (Vector3)m_dir * (data.MovementSpeed * Time.deltaTime);
             m_view.SetWalkSpeed((m_dir * data.MovementSpeed).magnitude);
@@ -188,7 +184,6 @@ namespace _Main.Scripts.Enemies
 
             Gizmos.DrawLine(transform.position, transform.position + (Vector3)m_dir);
             Gizmos.color = Color.green;
-            Gizmos.DrawLine(transform.position, target);
         }
 
 #endif

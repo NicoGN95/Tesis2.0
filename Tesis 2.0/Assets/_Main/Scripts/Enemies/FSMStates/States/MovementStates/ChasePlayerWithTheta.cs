@@ -80,8 +80,8 @@ namespace _Main.Scripts.Enemies.FSMStates.States.MovementStates
 
             var l_currentTargetNode = m_dictionary[p_model].Path[m_dictionary[p_model].NodeCount];
 
-            var l_wantedDir = MySteeringBehaviors.GetAdvancedObsAvoidanceDir(p_model.transform.position,
-                l_currentTargetNode.WorldPos, p_model.GetData().ObsDetectionRadius, avoidForce, obsMask);
+            //var l_wantedDir = MySteeringBehaviors.GetAdvancedObsAvoidanceDir(p_model.transform.position,
+            //    l_currentTargetNode.WorldPos, p_model.GetData().ObsDetectionRadius, avoidForce, obsMask);
             
             p_model.MoveTowards(l_currentTargetNode.WorldPos);
         }

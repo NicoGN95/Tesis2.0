@@ -54,7 +54,7 @@ namespace _Main.Scripts.Steering_Behaviours
             return l_dirToAvoid;
         }
         
-        public static Vector3 GetAdvancedObsAvoidanceDir(Vector2 p_orginPos,Vector2 p_targetPosition,float p_detectionRaduis, float p_behabiourIntensity,LayerMask l_mask)
+        public static Vector2 GetAdvancedObsAvoidanceDir(Vector2 p_orginPos,Vector2 p_targetPosition,float p_detectionRaduis, float p_behabiourIntensity,LayerMask l_mask)
         {
             var l_checkRadius = p_detectionRaduis;
             var l_selfPosition = p_orginPos;

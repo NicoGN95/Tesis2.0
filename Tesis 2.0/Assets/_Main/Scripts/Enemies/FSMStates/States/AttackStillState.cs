@@ -7,8 +7,6 @@ namespace _Main.Scripts.Enemies.FSMStates.States
     [CreateAssetMenu(fileName = "AttackStillState", menuName = "_main/States/Executions/AttackStillState", order = 0)]
     public class AttackStillState : MyState
     {
-        
-        
         [SerializeField] private float prepareTime;
         [SerializeField] private Vector2 offsetAttack;
         [SerializeField] private float attackRadius;

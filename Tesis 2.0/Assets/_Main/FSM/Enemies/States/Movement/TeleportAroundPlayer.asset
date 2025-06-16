@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7d2bec7bc00a489c8fc39730ae48fffd, type: 3}
+  m_Name: TeleportAroundPlayer
+  m_EditorClassIdentifier: 
+  maxDistanceToTarget: {x: 3, y: 3}
+  minDistanceToTarget: {x: 1, y: 1}
+  timeToBanish: 0.75
+  RoomLayer:
+    serializedVersion: 2
+    m_Bits: 64

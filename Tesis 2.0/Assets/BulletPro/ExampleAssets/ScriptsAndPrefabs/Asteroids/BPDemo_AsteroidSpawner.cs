@@ -1,0 +1,18 @@
+﻿using UnityEngine;
+
+// This script is part of the BulletPro package for Unity.
+// But it's only used in the example scene and I recommend writing a better one that fits your needs.
+// Author : Simon Albou <albou.simon@gmail.com>
+
+namespace BulletPro.DemoScripts
+{
+	public class BPDemo_AsteroidSpawner : MonoBehaviour
+	{
+		public BulletEmitter emitter;
+
+		public void ResetEmitter()
+		{
+			emitter.Kill(KillOptions.AllBulletsButRoot);
+		}
+	}
+}

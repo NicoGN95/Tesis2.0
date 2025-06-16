@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16c6da0df7df29f40986756b24fe0822, type: 3}
+  m_Name: EnemyPoolData
+  m_EditorClassIdentifier: 
+  <AllBossToSpawn>k__BackingField:
+  - {fileID: 7143505613362295351, guid: bc2612f5bc10c994e89b00e3b2a2e01d, type: 3}
+  - {fileID: 463209081380052378, guid: cd25fd3f3e0668c4bb7ebcc3aed16ad9, type: 3}
+  - {fileID: 1569396537955310074, guid: 6e1ef34a77cd4744384596ef99345417, type: 3}
+  - {fileID: 1815099171588671055, guid: a7db368e41f9cc846bc888720a1f5486, type: 3}
+  allEnemiesPrefabs:
+  - {fileID: 665963807789491670, guid: 8c9058405e010f8459356fddc528622a, type: 3}
+  - {fileID: 7815752160156130473, guid: 30624ac7c35e2ea419fb677e882ec8f8, type: 3}
+  - {fileID: 2428573690158940086, guid: d66e410d258742c4184efc57e321c2f8, type: 3}
+  - {fileID: 2428573690158940086, guid: bbc5cbe420da7d94b92b5d1e483e5a9e, type: 3}
+  - {fileID: 7161241070491691102, guid: e9e569ac1dd022f48afab02679836414, type: 3}
+  - {fileID: 7357540521744419404, guid: 8460fd1797ba4da4da269a5e3a0af7d0, type: 3}
+  - {fileID: 2428573690158940086, guid: 3e9a9a1f6925a0c48b4c9c0714e080b7, type: 3}
+  allEnemiesChances:
+  - 100
+  - 80
+  - 40
+  - 100
+  - 50
+  - 80
+  - 0
+  chancePercentage:
+  - 33.333332
+  - 33.333332
+  - 33.333332
+  - 33.333332
+  - 33.333332
+  - 33.333332

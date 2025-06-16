@@ -3,7 +3,9 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Enemy
+  - MinimapCamera
   layers:
   - Default
   - TransparentFX
@@ -11,21 +13,21 @@ TagManager:
   - 
   - Water
   - UI
-  - 
-  - 
+  - Room
+  - Door
   - 
   - 
   - Player
   - Enemy
+  - Bullet
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - Interact
+  - Obstacle
+  - PickUps
+  - Grid
+  - Walls
+  - Minimap
+  - Items
   - 
   - 
   - 
@@ -40,4 +42,31 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Floor
+    uniqueID: 2656053801
+    locked: 0
+  - name: Doors
+    uniqueID: 394701209
+    locked: 0
+  - name: Walls
+    uniqueID: 3336657775
+    locked: 0
+  - name: Deco
+    uniqueID: 2788837327
+    locked: 0
+  - name: Bullets
+    uniqueID: 2779105575
+    locked: 0
+  - name: Enemy
+    uniqueID: 650332867
+    locked: 0
+  - name: Player
+    uniqueID: 3172035821
+    locked: 0
+  - name: Minimap
+    uniqueID: 1507013663
+    locked: 0
+  - name: UI
+    uniqueID: 292729817
     locked: 0

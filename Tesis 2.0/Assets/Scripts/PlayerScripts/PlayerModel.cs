@@ -1,38 +1,15 @@
-using System.Text;
-using Interfaces;
-using JetBrains.Annotations;
 using UnityEngine;
 
 namespace PlayerScripts
 {
-    public class PlayerModel : MonoBehaviour, IDamageable
+    [RequireComponent(typeof(Rigidbody2D))]
+    [RequireComponent(typeof(HealthController))]
+    public class PlayerModel : MonoBehaviour
     {
         [SerializeField] private PlayerData playerData;
 
+        private Rigidbody2D m_rigidbody;
 
-
-        public int CurrHp => m_currHp;
-        private int m_currHp;
-        public int CurrMaxHp => m_currMaxHp;
-        private int m_currMaxHp;
-        public float CurrMovementSpeed => m_currMovementSpeed;
-        private float m_currMovementSpeed;
-        public float CurrEnergy => m_currEnergy;
-        private float m_currEnergy;
-        public float CurrFireRate => m_currFireRate;
-        private float m_currFireRate;
-        public float CurrRange => m_currRange;
-        private float m_currRange;
-        public float CurrCriticalChance => m_currCriticalChance;
-        private float m_currCriticalChance;
-        public float CurrDashCooldown => m_currDashCooldown;
-        private float m_currDashCooldown;
-        public float CurrDashTrans => m_currDashTrans;
-        private float m_currDashTrans;
-        
-        
-        private int m_currDamage;
-        public float CurrProjectileSpeed;
         private float m_currCriticalDamageMult;
         private int m_currCoins;
         private int m_currXp;
@@ -41,50 +18,61 @@ namespace PlayerScripts
         private float m_fireRateTimer;
         private Camera m_mainCamera;
         private Vector3 m_crossAirPos;
+        public IHealthController HealthController { get; private set; }
+        public StatsController StatsController { get; private set; }
+
+        private void Awake()
+        {
+            m_rigidbody = GetComponent<Rigidbody2D>();
+            HealthController = GetComponent<IHealthController>();
+            HealthController.Initialize(playerData.MaxHp);
+        }
+
         private void Start()
         {
-            m_currHp = playerData.StartHp;
-            m_currMaxHp = playerData.MaxHp;
-            m_currMovementSpeed = playerData.MovementSpeed;
-            m_currEnergy = playerData.Energy;
-            m_currFireRate = playerData.FireRate;
-            m_currRange = playerData.Range;
-            m_currCriticalChance = playerData.CriticalChance;
-            m_currDashCooldown = playerData.DashCooldown;
-            m_currDashTrans = playerData.DashTranslation;
+            InitializeStats();
 
             m_fireRateTimer = 0f;
             m_dashTimer = 0f;
             m_mainCamera = Camera.main;
-            
-
         }
-        
+
+        private void InitializeStats()
+        {
+            StatsController = new StatsController(playerData);
+        }
+
+        public void UpdateStats(StatsController p_statsController)
+        {
+            StatsController = p_statsController;
+        }
+
         public void Move(Vector3 p_dir)
         {
-            transform.position += p_dir * (m_currMovementSpeed * Time.deltaTime);
+            var l_newPosition = transform.position + p_dir * (StatsController.GetStatById(StatsId.MovementSpeed) * Time.deltaTime);
+            m_rigidbody.MovePosition(l_newPosition);
         }
 
         public void Dash(Vector3 p_dir)
         {
-            if(m_dashTimer > Time.time)
+            if (m_dashTimer > Time.time)
                 return;
 
-            //Todo, hacerlo con impulse en RB
-            transform.position += p_dir * m_currDashTrans;
-            m_dashTimer = m_currDashCooldown + Time.time;
+            m_rigidbody.AddForce(p_dir * StatsController.GetStatById(StatsId.DashTranslation), ForceMode2D.Impulse);
+            m_dashTimer = StatsController.GetStatById(StatsId.DashCooldown) + Time.time;
         }
 
         public void Shoot()
         {
             //Check for the rate fire to be > 0f before shooting the next bullet
-            if(m_fireRateTimer > Time.time)
+            if (m_fireRateTimer > Time.time)
                 return;
 
-            var bull = Instantiate(playerData.PlayerBullet);
-            bull.Initialize(CurrProjectileSpeed, m_currDamage,m_crossAirPos - transform.position);
-            m_fireRateTimer = Time.time + m_currFireRate;
-            
+            var l_position = transform.position;
+            var l_bull = Instantiate(playerData.Bullet, l_position, playerData.Bullet.transform.rotation);
+            l_bull.Initialize(StatsController.GetStatById(StatsId.ProjectileSpeed), StatsController.GetStatById(StatsId.Damage),
+                (m_crossAirPos - l_position).normalized, StatsController.GetStatById(StatsId.Range), playerData.TargetLayer);
+            m_fireRateTimer = Time.time + StatsController.GetStatById(StatsId.FireRate);
         }
 
         public void UpdateCrossAir(Vector3 p_pos)
@@ -92,11 +80,9 @@ namespace PlayerScripts
             m_crossAirPos = m_mainCamera.ScreenToWorldPoint(p_pos);
         }
 
-        public void GetDamage(int damage)
+        private void Die()
         {
-            m_currHp -= damage;
-            
-            //TODO: QUE PASEEN COSAS
+            Debug.Log($"YOU DIED");
         }
     }
 }

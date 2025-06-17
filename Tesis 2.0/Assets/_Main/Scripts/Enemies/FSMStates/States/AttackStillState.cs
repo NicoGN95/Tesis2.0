@@ -27,7 +27,7 @@ namespace _Main.Scripts.Enemies.FSMStates.States
             p_model.View.PlayAttackAnim();
             p_model.SetIsAttacking(true);
         }
-
+        
         public override void ExecuteState(EnemyModel p_model)
         {
             if(m_datas[p_model].timer < Time.time)
